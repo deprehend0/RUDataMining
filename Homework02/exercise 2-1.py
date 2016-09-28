@@ -12,11 +12,11 @@ W = loadmat('Data/wine.mat')['X']
 #ylabel('g/dm3')
 #
 #subplot(2, 1, 2)
-#hist(W0)
+#hist(W[:,0])
 #title('Histogram fixed acidity (tartaric)')
 #xlabel('g/dm3')
 #ylabel('occurences')
-
+ 
 #W1 = stats.zscore(W[:,1])
 #subplot(2, 1, 1)
 #boxplot(W1)
@@ -24,7 +24,7 @@ W = loadmat('Data/wine.mat')['X']
 #ylabel('g/dm3')
 #
 #subplot(2, 1, 2)
-#hist(W1)
+#hist(W[:,1])
 #title('Histogram volatile acidity (acetic)')
 #xlabel('g/dm3')
 #ylabel('occurences')
@@ -36,7 +36,7 @@ W = loadmat('Data/wine.mat')['X']
 #ylabel('g/dm3')
 #
 #subplot(2, 1, 2)
-#hist(W2)
+#hist(W[:,2])
 #title('Histogram citric acid')
 #xlabel('g/dm3')
 #ylabel('occurences')
@@ -48,7 +48,7 @@ W = loadmat('Data/wine.mat')['X']
 #ylabel('g/dm3')
 #
 #subplot(2, 1, 2)
-#hist(W3)
+#hist(W[:,3])
 #title('Histogram residual sugar')
 #xlabel('g/dm3')
 #ylabel('occurences')
@@ -60,7 +60,7 @@ W = loadmat('Data/wine.mat')['X']
 #ylabel('g/dm3')
 #
 #subplot(2, 1, 2)
-#hist(W4)
+#hist(W[:,4])
 #title('Histogram chlorides')
 #xlabel('g/dm3')
 #ylabel('occurences')
@@ -72,7 +72,7 @@ W = loadmat('Data/wine.mat')['X']
 #ylabel('mg/dm3')
 #
 #subplot(2, 1, 2)
-#hist(W5)
+#hist(W[:,5])
 #title('Histogram free sulfur dioxide')
 #xlabel('mg/dm3')
 #ylabel('occurences')
@@ -84,7 +84,7 @@ W = loadmat('Data/wine.mat')['X']
 #ylabel('mg/dm3')
 #
 #subplot(2, 1, 2)
-#hist(W6)
+#hist(W[:,6])
 #title('Histogram total sulfur dioxide')
 #xlabel('mg/dm3')
 #ylabel('occurences')
@@ -108,7 +108,7 @@ W = loadmat('Data/wine.mat')['X']
 #ylabel('pH')
 #
 #subplot(2, 1, 2)
-#hist(W8)
+#hist(W[:,8])
 #title('Histogram pH')
 #xlabel('pH')
 #ylabel('occurences')
@@ -120,7 +120,7 @@ W = loadmat('Data/wine.mat')['X']
 #ylabel('g/dm3')
 #
 #subplot(2, 1, 2)
-#hist(W9)
+#hist(W[:,9])
 #title('Histogram sulphates')
 #xlabel('g/dm3')
 #ylabel('occurences')
@@ -137,14 +137,65 @@ W = loadmat('Data/wine.mat')['X']
 #xlabel('% vol.')
 #ylabel('occurences')
 
-W11 = stats.zscore(W[:,11])
+#W11 = stats.zscore(W[:,11])
+#subplot(2, 1, 1)
+#boxplot(W[:,11])
+#title('Boxplot quality score')
+#ylabel('0-10')
+#
+#subplot(2, 1, 2)
+#hist(W[:,11])
+#title('Histogram quality score')
+#xlabel('0-10')
+#ylabel('occurences')
+
+Alcohol = W[:,10]
+Acidity = W[:,2]
+Density = W[:,8]
+tmpAlc = []
+tmpAci = []
+tmpDen = []
+
+for i in range (0, len(Alcohol)):
+    if(Alcohol[i] < 200 and Alcohol[i] > 0.5):
+        tmpAlc.append(Alcohol[i])
+    if(Acidity[i] > 0 and Acidity[i] < 20):
+        tmpAci.append(Acidity[i])
+    if(Density[i] > 0.1 and Density[i] < 10):
+        tmpDen.append(Density[i])
+        
+CAlc = stats.zscore(tmpAlc)
 subplot(2, 1, 1)
-boxplot(W[:,11])
-title('Boxplot alcohol')
+boxplot(CAlc)
+title('Boxplot cleaned Alcohol')
 ylabel('% vol.')
 
 subplot(2, 1, 2)
-hist(W11)
-title('Histogram aclohol')
+hist(tmpAlc)
+title('Histogram cleaned Alcohol')
 xlabel('% vol.')
+ylabel('occurences')
+      
+CAci = stats.zscore(tmpAci)
+subplot(2, 1, 1)
+boxplot(CAci)
+title('Boxplot cleaned volatide acidity')
+ylabel('g/dm3')
+
+subplot(2, 1, 2)
+hist(tmpAci)
+title('Histogram cleaned volatide acidity')
+xlabel('g/dm3')
+ylabel('occurences')
+        
+CDen = stats.zscore(tmpDen)
+subplot(2, 1, 1)
+boxplot(CDen)
+title('Boxplot cleaned density')
+ylabel('% vol.')
+
+subplot(2, 1, 2)
+hist(tmpDen)
+title('Histogram cleaned density')
+xlabel('g/cm3')
 ylabel('occurences')
