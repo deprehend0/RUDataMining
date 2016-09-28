@@ -206,13 +206,67 @@ W = loadmat('Data/wine.mat')['X']
 #ylabel('occurences')
 
 #scatter(W[:,0], W[:,11])
-#xlabel('Volatide acidity (g/dm3)')
+#xlabel('Fixed acidity (tartaric) (g/dm3)')
 #ylabel('Quality score (0-10)')
 #
 #print(stats.pearsonr(W[:,0], W[:,11]))
 
-scatter(tmpAci[0], tmpAci[1])
-xlabel('Volatile acidity (acetic) (g/dm3)')
-ylabel('Quality score (0-10)')
+#scatter(tmpAci[0], tmpAci[1])
+#xlabel('Volatile acidity (acetic) (g/dm3)')
+#ylabel('Quality score (0-10)')
+#
+#print(stats.pearsonr(tmpAci[0], tmpAci[1]))
+#
+#scatter(W[:,2], W[:,11])
+#xlabel('Citric acid (g/dm3)')
+#ylabel('Quality score (0-10)')
+#
+#print(stats.pearsonr(W[:,2], W[:,11]))
 
-print(stats.pearsonr(tmpAci[0], tmpAci[1]))
+#scatter(W[:,3], W[:,11])
+#xlabel('Residual sugar (g/dm3)')
+#ylabel('Quality score (0-10)')
+#
+#print(stats.pearsonr(W[:,3], W[:,11]))
+
+#scatter(W[:,4], W[:,11])
+#xlabel('Chlorides (g/dm3)')
+#ylabel('Quality score (0-10)')
+#
+#print(stats.pearsonr(W[:,4], W[:,11]))
+
+#scatter(W[:,5], W[:,11])
+#xlabel('Free sulfur dioxide (mg/dm3)')
+#ylabel('Quality score (0-10)')
+#
+#print(stats.pearsonr(W[:,5], W[:,11]))
+
+#scatter(W[:,6], W[:,11])
+#xlabel('Total sulfur dioxide (mg/dm3)')
+#ylabel('Quality score (0-10)')
+#
+#print(stats.pearsonr(W[:,6], W[:,11]))
+
+#scatter(tmpDen[0], tmpDen[1])
+#xlabel('Density (g/cm3)')
+#ylabel('Quality score (0-10)')
+#
+#print(stats.pearsonr(tmpDen[0], tmpDen[1]))
+
+#scatter(W[:,8], W[:,11])
+#xlabel('pH (pH)')
+#ylabel('Quality score (0-10)')
+#
+#print(stats.pearsonr(W[:,8], W[:,11]))
+
+#scatter(W[:,9], W[:,11])
+#xlabel('Sulphates (g/dm3)')
+#ylabel('Quality score (0-10)')
+#
+#print(stats.pearsonr(W[:,9], W[:,11]))
+
+#scatter(tmpAlc[0], tmpAlc[1])
+#xlabel('Alcohol (% vol.)')
+#ylabel('Quality score (0-10)')
+#
+#print(stats.pearsonr(tmpAlc[0], tmpAlc[1]))
