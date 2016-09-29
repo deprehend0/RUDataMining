@@ -152,7 +152,7 @@ W = loadmat('Data/wine.mat')['X']
 #
 #Alcohol = W[:,10]
 #Acidity = W[:,2]
-#Density = W[:,8]
+#Density = W[:,7]
 #Rating = W[:,11]
 #tmpAlc = [],[]
 #tmpAci = [],[]
