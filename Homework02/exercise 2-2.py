@@ -15,7 +15,7 @@ for i in range(0, len(Zip)):
 
 for i in range(0, 10):
     subplot(1,1,1);
-    I = reshape(tmp[0,:],(16,16))
+    I = reshape(tmp[i],(16,16))
     imshow(I, extent=(0,16,0,16), cmap=cm.gray_r);
-    title('Digit as an image');
+    title('Digit {} as an image' .format(i));
     show()
