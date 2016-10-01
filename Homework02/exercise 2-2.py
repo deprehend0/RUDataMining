@@ -79,18 +79,3 @@ for i in range(0, 10):
 #xlabel("PC3")
 #ylabel("PC4")
 #show()
-
-fig = plt.figure()
-ax = fig.add_subplot(111, projection='3d')
-
-sx = Z[:,0]
-sy = Z[:,1]
-sz = Z[:,2]
-
-ax.scatter(sx, sy, sz)
-
-ax.set_xlabel("PC1")
-ax.set_ylabel("PC2")
-ax.set_zlabel("PC3")
-
-plt.show()
