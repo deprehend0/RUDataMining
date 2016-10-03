@@ -20,8 +20,6 @@ for i in range(0, len(C2)):
     mean = np.mean(C2[i])
     print("The mean for {} is: {}" .format(C2[i], mean))
     C2M.append(mean)
-    
-    
 
 C4 = [list(x) for x in itt.combinations(Appendages, 4)]
 C4M = []
@@ -50,3 +48,24 @@ print(np.multiply((SD / np.sqrt(4)), RPop))
 
 print(SD / np.sqrt(2))
 print(np.multiply((SD / np.sqrt(2)), RPop))
+
+subplot(1,1,1)
+title('Histogram of distribution of the population')
+xlabel('Appendages')
+ylabel('Occurence')
+plt.hist(Appendages, bins=(2,4,6,8,10,12,14,16,18))
+show()
+
+subplot(1,1,1)
+title('Histogram of distribution of the sample population N=2')
+xlabel('Appendages')
+ylabel('Occurence')
+plt.hist(C2M,bins=(2,4,6,8,10,12,14,16,18))
+plt.show()
+
+subplot(1,1,1)
+title('Histogram of distribution of the sample population N=4')
+xlabel('Appendages')
+ylabel('Occurence')
+plt.hist(C4M,bins=(2,4,6,8,10,12,14,16,18))
+plt.show()
