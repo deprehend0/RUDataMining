@@ -1,0 +1,6 @@
+3.2.1 The optimal tree depth seems to be around 5. In some occasions depth 6 is better, but eventually the optimal
+error percentage is the same as the depth 5 error percentage.
+
+Even after a few new random splits the optimal depth is 5.
+
+3.2.2 The optimal tree depth also seems to be 5. In this case there are less bumps after the first optimal depth.
