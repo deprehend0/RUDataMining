@@ -83,11 +83,12 @@ for i in range(1, trainSize):
     manScore = 100 - np.multiply(mf.score(S1Xtest, S1Ytest), 100)
     S1man.append(manScore)
 
-plot(xaxis, S1euc)
-plot(xaxis, S1man)
+plotE, = plot(xaxis, S1euc)
+plotM, = plot(xaxis, S1man)
 title('Synth1 Euclidean vs Manhattan')
 xlabel('Amount of neighbors')
 ylabel('Error rate')
+plt.legend([plotE, plotM], ['Euclidean', 'Manhattan'], loc=4)
 show()
 
 #Synth2
@@ -106,11 +107,12 @@ for i in range(1, trainSize):
     manScore = 100 - np.multiply(mf.score(S2Xtest, S2Ytest), 100)
     S2man.append(manScore)
 
-plot(xaxis, S2euc)
-plot(xaxis, S2man)
+plotE, = plot(xaxis, S2euc)
+plotM, = plot(xaxis, S2man)
 title('Synth2 Euclidean vs Manhattan')
 xlabel('Amount of neighbors')
 ylabel('Error rate')
+plt.legend([plotE, plotM], ['Euclidean', 'Manhattan'], loc=4)
 show()
 
 #Synth3
@@ -129,35 +131,34 @@ for i in range(1, trainSize):
     manScore = 100 - np.multiply(mf.score(S3Xtest, S3Ytest), 100)
     S3man.append(manScore)
 
-plot(xaxis, S3euc)
-plot(xaxis, S3man)
+plotE, = plot(xaxis, S3euc)
+plotM, = plot(xaxis, S3man)
 title('Synth3 Euclidean vs Manhattan')
 xlabel('Amount of neighbors')
 ylabel('Error rate')
+plt.legend([plotE, plotM], ['Euclidean', 'Manhattan'], loc=4)
 show()
 
 #Synth4
-S4euc = []
-S4man = []
-xaxis = []
-trainSize = np.divide(np.size(S4Xtrain), 2)
-for i in range(1, trainSize):
-    xaxis.append(i)
-    euc = neighbors.KNeighborsClassifier(n_neighbors=i, metric='euclidean')
-    ef = euc.fit(S4Xtrain, S4Ytrain.ravel())
-    eucScore = 100 - np.multiply(ef.score(S4Xtest, S4Ytest), 100)
-    S4euc.append(eucScore)
-    man = neighbors.KNeighborsClassifier(n_neighbors=i, metric='manhattan')
-    mf = man.fit(S4Xtrain, S4Ytrain.ravel())
-    manScore = 100 - np.multiply(mf.score(S3Xtest, S3Ytest), 100)
-    S4man.append(manScore)
+# S4euc = []
+# S4man = []
+# xaxis = []
+# trainSize = np.divide(np.size(S4Xtrain), 2)
+# for i in range(1, trainSize):
+#     xaxis.append(i)
+#     euc = neighbors.KNeighborsClassifier(n_neighbors=i, metric='euclidean')
+#     ef = euc.fit(S4Xtrain, S4Ytrain.ravel())
+#     eucScore = 100 - np.multiply(ef.score(S4Xtest, S4Ytest), 100)
+#     S4euc.append(eucScore)
+#     man = neighbors.KNeighborsClassifier(n_neighbors=i, metric='manhattan')
+#     mf = man.fit(S4Xtrain, S4Ytrain.ravel())
+#     manScore = 100 - np.multiply(mf.score(S3Xtest, S3Ytest), 100)
+#     S4man.append(manScore)
 
-plot(xaxis, S4euc)
-plot(xaxis, S4man)
-title('Synth4 Euclidean vs Manhattan')
-xlabel('Amount of neighbors')
-ylabel('Error rate')
-show()
-
-#6.1.2
-# Iris = xl.open_workbook('Data/iris.xls')
+# plotE, = plot(xaxis, S4euc)
+# plotM, = plot(xaxis, S4man)
+# title('Synth4 Euclidean vs Manhattan')
+# xlabel('Amount of neighbors')
+# ylabel('Error rate')
+# plt.legend([plotE, plotM], ['Euclidean', 'Manhattan'], loc=4)
+# show()
