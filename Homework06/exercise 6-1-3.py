@@ -15,12 +15,6 @@ APT = []
 for i in range(len(AP)):
     APT.append(long(AP[i]))
 
-
-# knn = nb(n_neighbors=4, metric='euclidean')
-# knn.fit(NAA, APT)
-#
-# nbr = knn.kneighbors([NAA[5]], n_neighbors=7)
-# print nbr[1][0]
 xaxis = []
 predError = []
 for k in range(1, 40):
