@@ -7,10 +7,10 @@ from statsmodels.formula.api import ols
 import statsmodels.api as sm
 import patsy
 
-#Import the data and combine them into one object
+# Import the data and combine them into one object
 from scipy import stats
 
-with open('student/student-mat.csv', 'rb') as f:
+with open('student/student-mat.csv') as f:
     reader = csv.reader(f, delimiter=';')
     sMat = list(reader)
 
@@ -18,7 +18,7 @@ with open('student/student-por.csv') as f:
     reader = csv.reader(f, delimiter=';')
     sPor = list(reader)
 
-Data =[]
+Data = []
 for i in range(1, len(sMat)):
     Data.append(sMat[i])
 for i in range(1, len(sPor)):
@@ -26,60 +26,52 @@ for i in range(1, len(sPor)):
 
 Data = np.asarray(Data)
 
-#PearsonR on Alcohol consumption (X-axis) and Class failures (Y-axis)
-#Alcohol consumption is Dalc (26) and Walc (27)
-#Creating dummy variable for Walc and Dalc to convert them from qualitative variables to quantitative variables
-df = pd.DataFrame(Data[:, [26, 27]], columns = ['Dalc', 'Walc'])
-dummy_dalc = pd.get_dummies(df['Dalc'])
-dummy_walc = pd.get_dummies((df['Walc']))
-
-d1 = []
-d2 = []
-d3 = []
-d4 = []
-d5 = []
-dcombined = []
-for i in range(0, len(dummy_dalc)):
-    d1.append(dummy_dalc.get_value(i, col='1'))
-    d2.append(dummy_dalc.get_value(i, col='2'))
-    d3.append(dummy_dalc.get_value(i, col='3'))
-    d4.append(dummy_dalc.get_value(i, col='4'))
-    d5.append(dummy_dalc.get_value(i, col='5'))
-
-for i in range(0, len(d1)):
-    dcombined.append([d1[i], d2[i], d3[i], d4[i]])
-
 failures = []
-dalcint =[]
-for i in range(len(Data[:,14])):
-    failures.append(int(Data[i,14]))
-    dalcint.append(int(Data[i,26]))
+Dalc = []
+Walc = []
+alc = []
+for i in range(len(Data[:, 14])):
+    failures.append(int(Data[i, 14]))
+    Dalc.append(int(Data[i, 26]))
+    Walc.append(int(Data[i, 27]))
 
-regr=lr.LinearRegression()
-regr.fit(dcombined, failures)
-print regr.coef_
+print("below are Dalc and Walc r coefficients:")
+print(stats.pearsonr(Dalc, failures)[0])
+print(stats.pearsonr(Walc, failures)[0])
+plt.title("alcohol cons during weekend days")
+plt.hist(Walc)
+plt.xlabel("alcohol consumption 1(low) to 5(high)")
+plt.ylabel("number of students")
+plt.show()
+# divide boys from girls
+boys = []
+girls = []
 
-# print dalcint
-# plt.hist(dalcint)
-# # plt.hist(d2)
-# # plt.hist(d3)
-# # plt.hist(d4)
-# # plt.hist(d5)
-# plt.title('Distribution of students drinking alcohol')
-# plt.xlabel('Daily Alcohol consumption (low(1) - high(5))')
-# plt.ylabel('Occurences')
-# plt.show()
-y = failures
-x = [d1, d2, d3, d4]
-# print x[1:]
-ones = np.ones(len(x[0]))
-X = sm.add_constant(np.column_stack((d1, ones)))
-for ele in x[1:]:
-    X = sm.add_constant(np.column_stack((ele, X)))
+for i in range(0, 1044):
+    if Data[i, 1] == 'F':
+        girls.append(Data[i])
+    else:
+        boys.append(Data[i])
+boys = np.asarray(boys)
+girls = np.asarray(girls)
+boysDalc = []
+boysWalc = []
+boysFailures = []
+for i in range(0, 453):
+    boysFailures.append(int(boys[i, 14]))
+    boysDalc.append(int(boys[i, 26]))
+    boysWalc.append(int(boys[i, 27]))
+print("below are boys Dalc and Walc coefficients:")
+print(stats.pearsonr(boysDalc, boysFailures)[0])
+print(stats.pearsonr(boysWalc, boysFailures)[0])
 
-results = sm.OLS(y, X).fit()
-print results.summary()
-
-# mod = ols(X, failures)
-# res = mod.fit()
-# print res.summary()
+girlsDalc = []
+girlsWalc = []
+girlsFailures = []
+for i in range(0, 453):
+    girlsFailures.append(int(girls[i, 14]))
+    girlsDalc.append(int(girls[i, 26]))
+    girlsWalc.append(int(girls[i, 27]))
+print("below are girls Dalc and Walc coefficients")
+print(stats.pearsonr(girlsDalc, girlsFailures)[0])
+print(stats.pearsonr(girlsWalc, girlsFailures)[0])

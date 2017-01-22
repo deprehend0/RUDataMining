@@ -1,12 +1,8 @@
 import xlrd as xl
 import pydotplus
 import numpy as np
-import sys
 
 from sklearn import tree
-
-reload(sys)
-sys.setdefaultencoding('utf8')
 
 workbook_mat = xl.open_workbook('student/student-mat.xls')
 sheet_mat = workbook_mat.sheet_by_index(0)
@@ -22,8 +18,8 @@ labels = []
 for i in range(0, sheet_por.row_len(0)):
     if (i != 14):
         labels.append(sheet_por.cell_value(0, i).decode('ascii')) # Both .csv-files have the same labelnames
-print len(labels)
-print labels[2]
+print labels
+
 
 #Make one big array of all values from both por and mat. We choose to add first the por list and afterwards the mat list
 X = []
@@ -111,10 +107,9 @@ for i in range(0,len(X[0])):
         tmp.append(X[j][i])
     X2.append(tmp)
 
-print len(X2)
 clf = tree.DecisionTreeClassifier(min_samples_split=100)
 clf = clf.fit(X2, Failures)
 
-dot_data = tree.export_graphviz(clf, out_file=None)#, feature_names=labels)
+dot_data = tree.export_graphviz(clf, out_file=None)
 graph = pydotplus.graph_from_dot_data(dot_data)
 graph.write_pdf('Images/porDTGraph.pdf')
