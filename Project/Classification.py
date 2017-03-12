@@ -101,5 +101,8 @@ clf = tree.DecisionTreeClassifier(min_samples_split=100)
 clf = clf.fit(X2, Failures)
 
 dot_data = tree.export_graphviz(clf, out_file="tree.dot")
+# write_pdf didn't work. Therefore we have written the tree to a .dot file and copied the contents
+# on graphvizweb.com to see the actual tree.
+
 # graph = pydotplus.graph_from_dot_data(dot_data)
 # graph.write_pdf('Images/porDTGraph.pdf')
