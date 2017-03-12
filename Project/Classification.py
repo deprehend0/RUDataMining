@@ -11,14 +11,12 @@ workbook_por = xl.open_workbook('student/student-por.xls')
 sheet_por = workbook_por.sheet_by_index(0)
 
 col14_mat = sheet_mat.col(14)
-# print col14_mat[0].value
 
 porRowZero = sheet_por.row_values(0)
 labels = []
 for i in range(0, sheet_por.row_len(0)):
     if (i != 14):
         labels.append(sheet_por.cell_value(0, i).decode('ascii')) # Both .csv-files have the same labelnames
-print labels
 
 
 #Make one big array of all values from both por and mat. We choose to add first the por list and afterwards the mat list
@@ -43,8 +41,7 @@ for i in range(0, sheet_mat.row_len(0)):
 
 Failures = Failures[0]
 
-#yes/no columns
-yn = [15, 16, 17, 18, 19, 20, 21, 22, 23]
+#yes/no columns [15, 16, 17, 18, 19, 20, 21, 22, 23]
 
 #Transition from strings to ints
 for i in range (0, len(X)):
@@ -110,6 +107,6 @@ for i in range(0,len(X[0])):
 clf = tree.DecisionTreeClassifier(min_samples_split=100)
 clf = clf.fit(X2, Failures)
 
-dot_data = tree.export_graphviz(clf, out_file=None)
-graph = pydotplus.graph_from_dot_data(dot_data)
-graph.write_pdf('Images/porDTGraph.pdf')
+dot_data = tree.export_graphviz(clf, out_file="tree.dot")
+# graph = pydotplus.graph_from_dot_data(dot_data)
+# graph.write_pdf('Images/porDTGraph.pdf')

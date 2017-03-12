@@ -3,6 +3,7 @@ from scipy.io import loadmat
 from sklearn import tree
 import pydotplus
 import numpy as np
+import graphviz as gv
 
 Wine = loadmat('Data/wine.mat')
 WD = Wine['X']
