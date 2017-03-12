@@ -12,13 +12,6 @@ sheet_por = workbook_por.sheet_by_index(0)
 
 col14_mat = sheet_mat.col(14)
 
-porRowZero = sheet_por.row_values(0)
-labels = []
-for i in range(0, sheet_por.row_len(0)):
-    if (i != 14):
-        labels.append(sheet_por.cell_value(0, i).decode('ascii')) # Both .csv-files have the same labelnames
-
-
 #Make one big array of all values from both por and mat. We choose to add first the por list and afterwards the mat list
 X = []
 Failures = []
